@@ -16,10 +16,10 @@ function ejemplo() {
 
   if (true) {
     let numero = 20;
-    console.log(numero); // 20
+    console.log(numero); // Imprimimos numero por consola 'numero' = 20
   }
 
-  console.log(numero); // 10
+  console.log(numero); // Imprimimos numero por consola 'numero' = 10
 }
 
 // Ejemplo 2: en este caso hemos declarado una variable var numero que es 10 en el bloque principal
