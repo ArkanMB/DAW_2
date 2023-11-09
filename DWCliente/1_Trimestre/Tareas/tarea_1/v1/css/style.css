@@ -1,0 +1,100 @@
+/* Establece el color de fondo del cuerpo en blanco */
+body {
+  background-color: #ffffff;
+
+  /* Usa una familia de fuentes sans-serif para el cuerpo */
+  font-family: sans-serif;
+
+  /* Establece el tamaño de la fuente del cuerpo en 16px */
+  font-size: 16px;
+
+  /* Establece el color del texto del cuerpo en negro */
+  color: #000000;
+
+  /* Convierte el cuerpo en un contenedor flexible */
+  display: flex;
+
+  /* Centra los elementos flexibles horizontalmente */
+  justify-content: center;
+
+  /* Centra los elementos flexibles verticalmente */
+  align-items: center;
+
+  /* Hace que el cuerpo llene toda la altura de la ventana */
+  height: 100vh;
+}
+
+/* Establece el ancho del contenedor en 500px */
+.container {
+  width: auto;
+
+  /* Establece la altura del contenedor en 200px */
+  height: auto;
+
+  /* Establece el color de fondo del contenedor en #cdcccc */
+  background-color: #cdcccc;
+
+  /* Agrega 20px de relleno a todos los lados del contenedor */
+  padding: 20px;
+
+  /* Agrega esquinas redondeadas con un radio de 10px al contenedor */
+  border-radius: 10px;
+}
+
+
+h1 {
+  /* Establece el tamaño de la fuente del encabezado en 24px */
+  font-size: 24px;
+
+  /* Establece el margen superior del encabezado en 10px */
+  margin-top: 10px;
+  
+}
+
+/* Establece el ancho del campo de entrada en 300px */
+input {
+  width: 300px;
+
+  /* Agrega 10px de relleno a todos los lados del campo de entrada */
+  padding: 10px;
+
+  /* Agrega un borde sólido negro de 1px al campo de entrada */
+  border: 1px solid #000000;
+
+  /* Agrega esquinas redondeadas con un radio de 4px al campo de entrada */
+  border-radius: 4px;
+
+  /* Agrega 10px de margen inferior al campo de entrada */
+  margin-bottom: 10px;
+}
+
+/* Establece el ancho del botón en 100px */
+button {
+  width: 100px;
+
+  /* Establece la altura del botón en 30px */
+  height: 30px;
+
+  /* Establece el color de fondo del botón en negro */
+  background-color: #000000;
+
+  /* Establece el color del texto del botón en blanco */
+  color: #ffffff;
+
+  /* Establece el tamaño de la fuente del botón en 14px */
+  font-size: 14px;
+
+  /* Elimina el borde del botón */
+  border: none;
+
+  /* Agrega esquinas redondeadas con un radio de 4px al botón */
+  border-radius: 4px;
+
+  /* Hace que el botón sea clicable */
+  cursor: pointer;
+}
+
+/* Establece el margen superior del párrafo en 0 */
+p {
+  margin-top: 0;
+}
