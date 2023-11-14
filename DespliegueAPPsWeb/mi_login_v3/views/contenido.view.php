@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla.INC</title>
+  <link rel="stylesheet" href="../css/teslastyle.css">
+  <link rel="icon" href="../img/tesla.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+  <!-- Encabezado -->
+  <header class="header">
+    <div class="grid">
+      <div class="textos-hero">
+        <h1 class="weight-600">
+          Tesla INC <span class="weight-400"><br>La compañia de coches del futuro</span>
+        </h1>
+        <br>
+        <p class="parrafo">Estamos creando un mundo alimentado por energía solar, que funciona con baterías y que se
+          desplaza en vehículos eléctricos. Explore el impacto más reciente de nuestros productos, personas y cadena de
+          suministro.</p>
+        <a href="cerrarsesion.php" class="boton">Cerrar sesion </a>
+      </div>
+      <div class="img-hero">
+        <img src="../img/logo-tesla.jpg" alt="" class="img">
+      </div>
+    </div>
+  </header>
+
+  <!-- Garantias -->
+
+  <main>
+    <section class="garantia">
+      <section class="grid">
+        <div class="contenedors">
+          <div class="contenedor">
+            <img src="" alt="" class="img-garantia">
+            <h3 class="titulo-garantia">Durabilidad</h3>
+            <p>Nuestros coches tienen una durabilidad garantizada de 360.000 kilometros mas que la mayoría de coches
+              electricos del mercado</p>
+          </div>
+          <div class="contenedor">
+            <img src="" alt="" class="img-garantia">
+            <h3 class="titulo-garantia">Seguridad</h3>
+            <p>Tenemos el mejor puntaje en el test euro 7, ya que contamos con mas de 30 sensores, entre ellos, de
+              proximidad, de antirobo y 8 camaras con un recorrido de 360 grados en total</p>
+          </div>
+          <div class="contenedor">
+            <img src="" alt="" class="img-garantia">
+            <h3 class="titulo-garantia">Futuro</h3>
+            <p>Con los avances tecnológicos y nuestro autopilot que cada año se actualiza para que todos nuestros coches
+              tengan un futuro mas que prometedor. Tesla es igual a Futuro</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Coches tesla -->
+
+    <section class="sobre-coches">
+      <div class="grid">
+        <div class="textos-sobre-coches">
+          <h2 class="subtitulo">Tipos de coches Tesla</h2>
+          <p class="parrafo">Todos nuestros modelos cuentan con gran capacidad de equipaje, potencia, conducción
+            autónoma y por supuesto la mejor seguridad, durabilidad y garantia a largo plazo.</p>
+        </div>
+        <div class="imagenes">
+          <img src="../img/Tesla-Model-3.jpg" alt="" class="imagen">
+          <img src="../img/modelY.jpg" alt="" class="imagen">
+          <img src="../img/modelx.jpg" alt="" class="imagen">
+          <img src="../img/models.jpg" alt="" class="imagen">
+        </div>
+      </div>
+    </section>
+
+    <section class="modelos grid">
+      <div class="textos-modelos">
+        <div class="texto-modelos">
+          <h3 class="text">Model 3</h3>
+          <p>Es el ideal para todo tipo de personas, y nos centramos en la costruccion del coche para el dia a dia en la
+            ciudad; con una potencia maxima de 460 caballos más que suficiente para hacer un dia de ruta por la montaña
+            y con el modo confort poder disfrutar de un viaje tranquilo sin preocupaciones.</p>
+        </div>
+        <div class="texto-modelos">
+          <h3 class="text">Model Y</h3>
+          <p>A decir verdad el Model Y es el coche perfecto para viajes largos y recorrerse todas las ciudades de tu
+            país con alta calidad de materiales y can capacidad de maletero puedes ir sin preocuparte del lo que llevar.
+          </p>
+        </div>
+        <div class="texto-modelos">
+          <h3 class="text">Model X</h3>
+          <p>Cuando hablamos del Model X hablamos de calidad, elegancia y familiaridad, con capacidad de 7 plazas poder
+            ir con toda la familia a cualquier parte y aunque no lo parezca el model X puede llegar a los increibles
+            1.020 caballos de fuerza maxima para no tener que preocuparte de que si te compras un coche grande que no te
+            falte potencia</p>
+        </div>
+        <div class="texto-modelos">
+          <h3 class="text">Model S</h3>
+          <p>El modelo mas tope de gama de nuestra marca para quien no quiere escatimar en gastos con mas de 1.000 CV,
+            es un coche de lujo con el que poder disfrutar de la carretera sin preocuparte tampoco de la comodidad y
+            contar con 5 asientos para llevar a tus familia, amigos, vecinos o conocidos</p>
+        </div>
+      </div>
+      <div class="img-modelos">
+        <img src="../img/modelos_tesla.jpg" alt="" class="img">
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="contenedor-footer">
+      <div class="content-foo">
+        <h4>Phone</h4>
+        <p>653543211</p>
+      </div>
+      <div class="content-foo">
+        <h4>Email</h4>
+        <a href="https://mail.google.com" target="_blank">jmoybae@gmail.com</a>
+      </div>
+      <div class="content-foo">
+        <h4>Location</h4>
+        <p>IES NUEVO</p>
+      </div>
+      <div class="content-foo">
+        <h4>Elon Musk</h4>
+        <a href="./index.html" target="_blank">Más información</a>
+      </div>
+    </div>
+    <h2 class="titulo-final">&copy; ÁngelMB Design | José Ángel Moya Baena</h2>
+  </footer>
+</body>
+
+</html>
