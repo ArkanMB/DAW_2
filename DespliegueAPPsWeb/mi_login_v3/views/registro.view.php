@@ -18,9 +18,9 @@
 
     <br>
 
-    <input type="text" name="usuario" placeholder="Usuario">
-    <input type="password" name="password" placeholder="Contraseña">
-    <input type="password" name="password2" placeholder="Repite la contraseña">
+    <input type="text" name="usuario" placeholder="Usuario" required>
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <input type="password" name="password2" placeholder="Repite la contraseña" required>
     <br><br>
     <input type="submit" value="Aceptar">
 

@@ -18,8 +18,8 @@
 
     <br>
 
-    <input type="text" name="usuario" placeholder="Usuario">
-    <input type="password" name="password" placeholder="Password">
+    <input type="text" name="usuario" placeholder="Usuario" required>
+    <input type="password" name="password" placeholder="Password" required>
     <br><br>
     <input type="submit" value="Aceptar">
     <p>¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>

@@ -14,7 +14,7 @@ if (
   if ($password == $password2) { //si las pass coinciden
     //comprobamos que el usuario no existe ya en BD
     try {
-      $host = "db-web.chhb1lexyp6c.us-east-1.rds.amazonaws.com";
+      $host = "bbdd-miweb.chhb1lexyp6c.us-east-1.rds.amazonaws.com";
       $dbUsername = "admin";
       $dbPassword = "Root##1234";
       $dbName = "usuarios";
@@ -26,9 +26,7 @@ if (
       $statement->execute(array(':usuario' => $usuario));
       $resultado = $statement->fetch();
 
-      if ($resultado) {
-        echo "el usuario ya existe";
-      } else {
+      if (!$resultado) {
         //guardo en BD el usuario
         $statement = $conn->prepare('INSERT INTO usuarios(usuario, password) values (:usuario, :password)');
         $statement->execute(
@@ -37,17 +35,25 @@ if (
             ':password' => $password
           )
         );
+
+        header("Location: login.php?perfecto_ahora_inicia_sesion");
+        exit();
+
+      } else {
+
+        echo "El usuario ya existe en la base de datos";
+
       }
 
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
+    } finally {
+      $conn = null; // Cierra la conexión
     }
-    header("Location: login.php?perfecto_ahora_inicia_sesion");
   } else {
     header("Location: registro.php?error=las_contraseñas_no_coinciden");
   }
 } else {
-  echo 'Rellena los datos correctamente';
 }
 
 require '../views/registro.view.php';
