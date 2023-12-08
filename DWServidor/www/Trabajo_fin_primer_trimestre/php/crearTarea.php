@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_SESSION['idUsuario'])) {
+if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_SESSION['idUsuario'])) {
 
   $titulo = $_POST['titulo'];
   $descripcion = $_POST['descripcion'];
@@ -15,10 +15,10 @@ if(isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_SESSION['i
     $insertStatement = $conn->prepare($sql);
     $insertStatement->bind_param('ss', $titulo, $descripcion);
     $insertStatement->execute();
-    $idTarea = mysqli_insert_id( $conn );
+    $idTarea = mysqli_insert_id($conn);
     $result = $insertStatement->get_result();
 
-    if(isset($result)) {
+    if (isset($result)) {
 
       $sql = 'INSERT INTO usuarios_tarea(tarea, usuario) values (?,?)';
       $insertStatement = $conn->prepare($sql);
@@ -37,7 +37,7 @@ if(isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_SESSION['i
 
   $conn->close();
   $insertStatement->close();
-  header ('Location: contenido.php');
+  header('Location: contenido.php');
 
 } else {
 

@@ -47,7 +47,7 @@
             $selectStatement->execute();
             $resultado = $selectStatement->get_result();
 
-            foreach($resultado as $key => $value) {
+            foreach ($resultado as $key => $value) {
 
               ?>
 
@@ -62,7 +62,7 @@
                   <?php
                   $descripcion = htmlspecialchars($value['descripcion']);
 
-                  echo strlen($descripcion) > 100 ? substr($descripcion, 0, 100).'...' : $descripcion;
+                  echo strlen($descripcion) > 60 ? substr($descripcion, 0, 60) . '...' : $descripcion;
                   ?>
                 </td>
                 <td>
@@ -84,7 +84,7 @@
 
           } catch (Exception $e) {
 
-            echo "Error: ".$e->getMessage();
+            echo "Error: " . $e->getMessage();
 
           }
 

@@ -1,6 +1,6 @@
 <?php
 
-if(
+if (
   isset($_POST['usuario']) && isset($_POST['password'])
   && isset($_POST['password2'])
 ) {
@@ -9,7 +9,7 @@ if(
   $password = hash('sha512', $_POST['password']);
   $password2 = hash('sha512', $_POST['password2']);
 
-  if($password == $password2) {
+  if ($password == $password2) {
 
     try {
 
@@ -22,7 +22,7 @@ if(
       $selectStatement->execute();
       $resultado = $selectStatement->get_result();
 
-      if($resultado->num_rows > 0) {
+      if ($resultado->num_rows > 0) {
 
       } else {
 

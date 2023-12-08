@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(isset($_SESSION['usuario']) && isset($_SESSION['$idUsuario'])) {
+if (isset($_SESSION['usuario']) && isset($_SESSION['$idUsuario'])) {
   header('Location: contenido.php');
 
-} elseif(isset($_POST['usuario']) && isset($_POST['password'])) {
+} elseif (isset($_POST['usuario']) && isset($_POST['password'])) {
 
 
   $usuario = strtolower($_POST['usuario']);
@@ -21,7 +21,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['$idUsuario'])) {
     $result = $selectStatement->get_result();
     $fila = $result->fetch_assoc();
 
-    if($result->num_rows == 1) {
+    if ($result->num_rows == 1) {
 
       $_SESSION['idUsuario'] = $fila['id'];
       $_SESSION['usuario'] = $usuario;
@@ -37,7 +37,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['$idUsuario'])) {
     $conn->close();
 
   } catch (Exception $e) {
-    echo "Error: ".$e->getMessage();
+    echo "Error: " . $e->getMessage();
   }
 
 }
