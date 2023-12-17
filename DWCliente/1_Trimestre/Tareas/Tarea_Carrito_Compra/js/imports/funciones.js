@@ -199,7 +199,7 @@ export function vaciarCarrito(TablaCarrito, ListaCursosSeleccionados) {
   ListaCursosSeleccionados.length = 0;
 
   // Vaciamos el local storage
-  localStorage.clear;
+  localStorage.clear();
 
   // Vaciamos la tabla del carrito
   TablaCarrito.innerHTML = "";
