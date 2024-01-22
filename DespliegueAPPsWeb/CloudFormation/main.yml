@@ -26,10 +26,11 @@ Resources:
     Type: "AWS::EC2::Instance"
     Properties:
       ImageId: "ami-06aa3f7caf3a30282"
+      IamInstanceProfile: "LabInstanceProfile"
       InstanceType: "t2.medium"
       KeyName: "vockey"
       SecurityGroups:
-        - !Ref ApplicationServerSecurityGroup
+        - Ref: ApplicationServerSecurityGroup
       Tags:
         - Key: "Name"
           Value: "MiServerWebConPila"
