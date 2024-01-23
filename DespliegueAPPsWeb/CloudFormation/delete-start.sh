@@ -2,6 +2,6 @@
 
 # Eliminacion de la pila
 aws cloudformation delete-stack \
---stack-name Tomcat2  \
+--stack-name Tomcat  \
 # Descomenta la linea de abajo si quieres preservar las propiedades
 # --preserve-stack-properties
