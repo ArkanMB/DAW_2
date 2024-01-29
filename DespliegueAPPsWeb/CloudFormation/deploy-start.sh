@@ -2,6 +2,6 @@
 
 # Desplegamos la plantilla de CloudFormarion
 aws cloudformation deploy \
---template-file main.yml \
+--template-file ubuntu.yml \
 --stack-name "Tomcat" \
 --capabilities CAPABILITY_NAMED_IAM
