@@ -122,40 +122,40 @@ Resources:
           ln -s /root/aws-cfn-bootstrap-latest/init/ubuntu/cfn-hup /etc/init.d/cfn-hup
           /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource EC2Instance --configsets full_install --region ${AWS::Region}
           sleep 1
-          # Actualizamos Ubuntu 20.04
-          apt update && apt upgrade -y
-          # Creamos el usuario Tomcat
+          # Crear usuario Tomcat
           useradd -m -d /opt/tomcat -U -s /bin/false tomcat
-          # Actualizamos la caché del administrador de paquetes e instalamos el JDK
+          # Actualizar la caché del administrador de paquetes e instalar JDK
           apt update
           apt install -y openjdk-17-jdk
-          # Descargamos e instalamos Apache Tomcat, siempre con la ultima versión en mi caso esta es la ultima.
-          TomcatVersion="10.1.18" 
-          wget https://dlcdn.apache.org/tomcat/tomcat-10/v${TomcatVersion}/bin/apache-tomcat-${TomcatVersion}.tar.gz -P /tmp
-          tar xzvf /tmp/apache-tomcat-${TomcatVersion}.tar.gz -C /opt/tomcat --strip-components=1
-          # Añadimos los permisos necesarios
+          # Descargar e instalar Apache Tomcat (ajusta la versión según tus necesidades)
+          wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.18/bin/apache-tomcat-10.1.18.tar.gz -O tomcat.tar.gz
+          tar xzvf tomcat.tar.gz -C /opt/tomcat --strip-components=1
+          # Configurar permisos
           chown -R tomcat:tomcat /opt/tomcat/
           chmod -R u+x /opt/tomcat/bin
-          # Configuramos los ususarios administradores de Tomcat.
-          cat <<EOF | tee -a /opt/tomcat/conf/tomcat-users.xml
+          #Configurar usuarios administradores, hacemos el cat con la instrucción <<EOF para que considere todo el texto que sigue como entrada estándar hasta que vuelva a encontrar <<EOF. El comando tee escribe la entrada estándar en el archivo que le indicamos en la ruta y -a hace que se añadan las líneas indicadas al final del fichero.  
+          cat <<EOF | sudo tee -a /opt/tomcat/conf/tomcat-users.xml
           <tomcat-users>
               <role rolename="manager-gui"/>
               <user username="manager" password='user1' roles="manager-gui"/>
-            <role rolename="admin-gui" />
+             <role rolename="admin-gui" />
           <user username="admin" password='admin1' roles="manager-gui,admin-gui" />
           </tomcat-users>
           EOF
-          # Creamos la variable archivo y le asignamos la ruta al archivo context.xml almacenado en la variable 
-          rutaArchivo="/opt/tomcat/webapps/manager/META-INF/context.xml"
-          # Comentamos la línea en el archivo
-          sed -i '/<Valve/,/<\/Valve>/ s/^/<!-- /; s/$/ -->/' "$rutaArchivo"
-          # Hacemos lo mismo para el siguiente archivo
-          rutaArchivo="/opt/tomcat/webapps/host-manager/META-INF/context.xml"
-          sed -i '/<Valve/,/<\/Valve>/ s/^/<!-- /; s/$/ -->/' "$arcrutaArchivohivo"
-          # Capturamos la ruta del archivo con update-java-alternatives -l y lo almacenamos en la variable java_home para usar la versión correcta
-          java_home=$(update-java-alternatives -l | awk '{print $3}')
-          #Hacemos cat para añadir al fichero tomcat.service las siguientes líneas.
-          cat <<EOF | tee /etc/systemd/system/tomcat.service
+          #Eliminar restricciones a los administradores comentando la línea en la que vienen los comandos Valve indicados en la guía. Utilizamos la instrucción sed para automatizar el proceso.
+          # Ruta al archivo context.xml almacenado en la variable archivo
+          archivo="/opt/tomcat/webapps/manager/META-INF/context.xml"
+          # Comentar la línea en el archivo
+          sed -i '/<Valve/,/<\/Valve>/ s/^/<!-- /; s/$/ -->/' "$archivo"
+          #Eliminar restricciones a los host manager comentando la línea en la que vienen los comandos Valve indicados en la guía. Utilizamos la instrucción sed para automatizar el proceso.
+          # Ruta al archivo context.xml almacenado en la variable archivo
+          archivo="/opt/tomcat/webapps/host-manager/META-INF/context.xml"
+          # Comentar la línea en el archivo
+          sed -i '/<Valve/,/<\/Valve>/ s/^/<!-- /; s/$/ -->/' "$archivo"
+          # Captura la ruta del archivo a partir de sudo update-java-alternatives -l y lo almacenamos en la variable java_home para usar la versión correcta
+          java_home=$(sudo update-java-alternatives -l | awk '{print $3}')
+          #Hacemos cat para añadir al fichero tomcat.service las siguientes líneas. Con la instrucción <<EOF para que considere todo el texto que sigue como entrada estándar hasta que vuelva a encontrar <<EOF. El comando tee escribe la entrada estándar en el archivo que le indicamos en la ruta.  
+          cat <<EOF | sudo tee /etc/systemd/system/tomcat.service
           [Unit]
           Description=Tomcat
           After=network.target
@@ -176,15 +176,15 @@ Resources:
           [Install]
           WantedBy=multi-user.target
           EOF
-          # Reiniciamos para aplicar los cambios
+          # Recarga systemd para aplicar los cambios
           systemctl daemon-reload
-          # Reiniciamos Tomcat para que se aplique la nueva configuración
+          # Reinicia el servicio Tomcat para aplicar la nueva configuración
           systemctl start tomcat
-          # Permisitmos que tomcat se inicie con el sistema
+          #Permitir que tomcat se inicie con el sistema
           systemctl enable tomcat
-          # Por ultimo permitimos el tráfico al puerto 8080 para aceptar solicitudes http
+          #Permitimos el trafico al puerto 80 para aceptar solicitudes http
           ufw allow 8080
-          # Esta tiene que serla ultima instrucción
+          # Esta tiene que ser la última instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
         - Key: Name
