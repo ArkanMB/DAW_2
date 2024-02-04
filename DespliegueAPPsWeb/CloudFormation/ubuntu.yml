@@ -105,6 +105,7 @@ Resources:
           exec > /tmp/userdata.log 2>&1
           # Actualizar todas las apps
           apt update -y
+          apt upgrade -y
           # Instalar unzip
           apt install unzip
           # Instalación CodeDeploy Agent
@@ -127,6 +128,11 @@ Resources:
           # Actualizar la caché del administrador de paquetes e instalar JDK
           apt update
           apt install -y openjdk-17-jdk
+          if [ $? -eq 0 ]; then
+          aws cloudformation list-exports \
+          --profile awsbootstrap \
+          --query "Exports[?Name=='InstanceEndpoint'].Value"
+          fi
           # Descargar e instalar Apache Tomcat (ajusta la versión según tus necesidades)
           wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.18/bin/apache-tomcat-10.1.18.tar.gz -O tomcat.tar.gz
           tar xzvf tomcat.tar.gz -C /opt/tomcat --strip-components=1
@@ -188,17 +194,17 @@ Resources:
           systemctl stop tomcat
           # Crear directorio temporal y acceder a él
           cd /tmp
-          mkdir app-update
-          cd app-update
+          mkdir appHolaMundoJava
+          cd appHolaMundoJava
           # Clonar el repositorio de la API
-          git clone https://github.com/<usuario>/<repositorio>.git .
+          git clone https://github.com/DavidHormigoRamirez/springholamundo.git .
           # Cambiar permisos al archivo gradlew
           chmod +x gradlew
           # Compilar la aplicación en WAR
-          ./gradlew war
+          bash gradlew war
           # Mover el archivo WAR a la carpeta de aplicaciones de Tomcat
-          mv build/libs/*.war /opt/tomcat/webapps/angel.war
-          # Reiniciar Tomcat
+          mv build/libs/holamundo-0.0.1-SNAPSHOT-plain.war /opt/tomcat/webapps/holamundo-0.0.1-SNAPSHOT-plain.war
+          # Iniciar Tomcat
           systemctl start tomcat
           # Esta tiene que ser la última instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
@@ -223,3 +229,8 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
+
+Outputs:
+  EC2InstanceEndPoint:
+    Description: Instancia EC2
+    Value: !Sub "http://${EC2Instance.PublicDnsName}:8080"
