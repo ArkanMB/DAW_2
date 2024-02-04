@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Despliegue app Node.j sobre instancia EC2 con ubuntu 20.04
+Description: Despliegue app Java en una instancia EC2 con ubuntu 20.04
 Parameters:
   EC2AMI:
-    Description: Imagen del Sistema Operativo
+    Description: Imagen Ubuntu 20.04
     Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id"
     Default: "/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
   KeyName:
@@ -184,6 +184,22 @@ Resources:
           systemctl enable tomcat
           #Permitimos el trafico al puerto 80 para aceptar solicitudes http
           ufw allow 8080
+          # Detener Tomcat
+          systemctl stop tomcat
+          # Crear directorio temporal y acceder a él
+          cd /tmp
+          mkdir app-update
+          cd app-update
+          # Clonar el repositorio de la API
+          git clone https://github.com/<usuario>/<repositorio>.git .
+          # Cambiar permisos al archivo gradlew
+          chmod +x gradlew
+          # Compilar la aplicación en WAR
+          ./gradlew war
+          # Mover el archivo WAR a la carpeta de aplicaciones de Tomcat
+          mv build/libs/*.war /opt/tomcat/webapps/angel.war
+          # Reiniciar Tomcat
+          systemctl start tomcat
           # Esta tiene que ser la última instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
